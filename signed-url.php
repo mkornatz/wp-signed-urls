@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * This class contains the logic for signing URLs and verifying them.
+ */
 if ( !class_exists( 'Signed_Url' ) ) {
   class Signed_Url {
 
