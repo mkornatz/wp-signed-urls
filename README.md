@@ -2,6 +2,16 @@
 
 A signed URL is a URL that provies limited permission and time to make a request. Signed URLs contain authentication information in their query string, allowing users without credentials to perform specific actions. After you generate a signed URL, anyone who possesses it can use it within a specified period of time.
 
+## Installing
+
+1. Download the plugin to your plugins directory
+```bash
+cd wp-content/plugins/
+wget https://github.com/mkornatz/wp-signed-urls/archive/master.zip
+```
+2. Activate the plugin on the WP Admin Plugins page
+3. Configure the plugin settings
+
 ## Signed URL Example
 
 Say your site hosts private resources only available to certain people, https://private-resources.example.com/dashboard.
