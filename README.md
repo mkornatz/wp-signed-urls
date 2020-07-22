@@ -8,6 +8,7 @@ A signed URL is a URL that provies limited permission and time to make a request
 ```bash
 cd wp-content/plugins/
 wget https://github.com/mkornatz/wp-signed-urls/archive/master.zip
+unzip master.zip && rm master.zip
 ```
 2. Activate the plugin on the WP Admin Plugins page
 3. Configure the plugin settings
