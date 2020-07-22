@@ -36,13 +36,21 @@ To generate a signature, you must concatenate the URL string (without the signat
 
 ```php
 $secret_signing_key = '788e2b5c5ac5a2fc2880ec87b5326f5a82f6d6c7865f13f12c5a7ffa0';
-$url = 'https://example.com/?page=example&size=123';
+
+// Set it to expire in 5 minutes from time of generation
+$expires_at = new DateTime( 'now + 5 minutes', new DateTimeZone('UTC') );
+
+// Set which page the user should come back to if they want to go back from where they came
+$return_to = 'https://example.com/referring-page';
+
+$url = 'https://example.com/?page=example&size=123&expiresAt=' . $expires_at->format(DateTime::ATOM) . '&returnTo=' . rawurlencode($return_to);
 
 $signature = hash('sha256', $url . $secret_signing_key);
 
 $final_signed_url = $url . '&signature=' . $signature;
 
-// $final_signed_url is "https://example.com/?page=example&size=123&signature=2e9208a59dd2ff9ac181d21c27c855166f88237552ff5ae681a8fba028d82007"
+// $final_signed_url is:
+// "https://example.com/?page=example&size=123&expiresAt=2020-07-21T09:30+00:00&returnTo=https%3A%2F%2Fexample.com%2Freferring-page&signature=cc17d97b51f09f3b38a598972b4b339d8a08059cde6b5fb81f2bef62f201d567"
 ```
 
 Note:
