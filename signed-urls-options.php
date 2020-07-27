@@ -99,6 +99,8 @@ if ( !class_exists( 'Signed_Urls_Options' ) ) {
 					With Signed URLs enabled, only users with the private link can access the dashboard, https://private-resources.example.com/dashboard?<em>signature=726b6174686a6e613834686d6e</em>.
 				</p>
 
+				<p>Technical documentation can be found at <a href="https://github.com/mkornatz/wp-signed-urls">https://github.com/mkornatz/wp-signed-urls</a>.</p>
+
 				<p>&nbsp;</p>
 				<form method="post" action="options.php">
 					<?php
@@ -231,7 +233,7 @@ if ( !class_exists( 'Signed_Urls_Options' ) ) {
 
 		public function enabled_html() {
 			?> <fieldset><?php $checked = ( isset( $this->options['enabled'] ) && $this->options['enabled'] === '1' ) ? 'checked' : '' ; ?>
-			<label for="enabled-0"><input type="radio" name="signed_urls_options[enabled]" id="enabled-0" value="1" <?php echo $checked; ?>> Enabled for entire site</label><br>
+			<label for="enabled-0"><input type="radio" name="signed_urls_options[enabled]" id="enabled-0" value="1" <?php echo $checked; ?>> Enabled</label><br>
 			<?php $checked = ( isset( $this->options['enabled'] ) && $this->options['enabled'] === '0' ) ? 'checked' : '' ; ?>
 			<label for="enabled-1"><input type="radio" name="signed_urls_options[enabled]" id="enabled-1" value="0" <?php echo $checked; ?>> Disabled</label></fieldset> <?php
 		}
@@ -244,7 +246,7 @@ if ( !class_exists( 'Signed_Urls_Options' ) ) {
 				?><option value="<?php echo $option ?>" <?php echo $selected; ?>><?php echo $option ?></option><?php
 			}
 
-			?></select><br><em>How long to remember a user when they use a signed URL to view the site.</em></label><?php
+			?></select><br><em>How long to remember a user when they view the site via a signed URL. This time period is measured from the last time the user loads a page during their session.</em></label><?php
 		}
 
 		public function redirect_url_html() {
