@@ -99,7 +99,7 @@ if ( !class_exists( 'Signed_Urls_Options' ) ) {
 					With Signed URLs enabled, only users with the private link can access the dashboard, https://private-resources.example.com/dashboard?<em>signature=726b6174686a6e613834686d6e</em>.
 				</p>
 
-				<p>Technical documentation can be found at <a href="https://github.com/mkornatz/wp-signed-urls">https://github.com/mkornatz/wp-signed-urls</a>.</p>
+				<p>Technical documentation can be found at <a href="https://github.com/mkornatz/wp-signed-urls" target="_blank">https://github.com/mkornatz/wp-signed-urls</a>.</p>
 
 				<p>&nbsp;</p>
 				<form method="post" action="options.php">
