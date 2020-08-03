@@ -91,7 +91,7 @@ if ( !class_exists( 'Signed_Urls_Front_End' ) ) {
 			}
 
 			// If they're using a new signed URL, ignore the current session in order to reset the session
-			if ( empty($_GET['signature']) && $this->session_is_valid() ) {
+			if ( !array_key_exists('signature', $_GET) && $this->session_is_valid() ) {
 				return $this->extend_session();
 			}
 
