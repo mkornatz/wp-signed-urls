@@ -38,7 +38,7 @@ if ( !class_exists( 'Signed_Urls_Front_End' ) ) {
 			if ( ! defined( 'DONOTCACHEPAGE' ) ) {
 				define( 'DONOTCACHEPAGE', true );
 			}
-			// Sets a cookie to pretend like we're signed in (LiquidWeb hosting provider)
+			// Sets a cookie to pretend like we're "signed in" (Liquid Web hosting provider - Varnish issue)
 			setcookie('wp-settings-signed-urls', '1');
 		}
 
@@ -86,7 +86,12 @@ if ( !class_exists( 'Signed_Urls_Front_End' ) ) {
 			}
 
 			// If they can edit posts, they are logged in and don't need a signed URL
-			if ( $this->session_is_valid() ) {
+			if ( current_user_can( 'edit_posts' ) ) {
+				return $this->extend_session();
+			}
+
+			// If they're using a new signed URL, ignore the current session in order to reset the session
+			if ( empty($_GET['signature']) && $this->session_is_valid() ) {
 				return $this->extend_session();
 			}
 
@@ -149,9 +154,6 @@ if ( !class_exists( 'Signed_Urls_Front_End' ) ) {
 
 		// Save referrer in case we need to send the user back to where they came from
 		private function remember_referrer() {
-			if (!empty($_SESSION['signed_urls_referrer'])) {
-				return;
-			}
 			if ( !empty($_GET['returnTo']) ) {
 				$_SESSION['signed_urls_referrer'] = $_GET['returnTo'];
 
@@ -161,9 +163,6 @@ if ( !class_exists( 'Signed_Urls_Front_End' ) ) {
 		}
 
 		private function session_is_valid() {
-			if ( current_user_can( 'edit_posts' ) ) {
-				return true;
-			}
 			if ( !$this->has_session() ) {
 				return false;
 			}
