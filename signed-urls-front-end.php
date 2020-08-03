@@ -14,8 +14,6 @@ if ( !class_exists( 'Signed_Urls_Front_End' ) ) {
 
 		private $options;
 
-		private $menu_option_to_replace_with_referrer = 'Back to PEP Portal';
-
 		public function __construct($options) {
 			$this->options = $options;
 
